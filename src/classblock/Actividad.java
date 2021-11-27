@@ -26,7 +26,7 @@ public class Actividad {
 
 	}
 	public void cambiarEstadoEntrega(){
-
+            
 	}
 
 	public void editarActividad(){
@@ -34,7 +34,7 @@ public class Actividad {
 	}
 
 	public void mostrarDetallesActividad(){
-
+            
 	}
 
     public float getCalificacionMaxima() {

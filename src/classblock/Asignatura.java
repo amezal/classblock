@@ -33,8 +33,17 @@ public class Asignatura {
 	 * @param tipoDeActividad
 	 * @param titulo
 	 */
-	public void agregarActividad(float calificacionMaxima, float calificacionObtenida, String descripcion, String estadoDeEntrega, Calendar fechaDeEntrega, String tipoDeActividad, String titulo){
-
+	public void agregarActividad(float calificacionObtenida, float calificacionMaxima, String descripcion, String estadoDeEntrega, Calendar fechaDeEntrega, String tipoDeActividad, String titulo){
+            Actividad actividad = new Actividad();
+            actividad.setTitulo(titulo);
+            actividad.setDescripcion(descripcion);
+            actividad.setEstadoDeEntrega(estadoDeEntrega);
+            actividad.setFechaDeEntrega(fechaDeEntrega);
+            actividad.setTipoDeActividad(tipoDeActividad);
+            actividad.setAsignatura(this);
+            actividad.setCalificacionObtenida(calificacionObtenida);
+            actividad.setCalificacionMaxima(calificacionMaxima);
+            actividades.add(actividad);
 	}
 
 	public void editarAsignatura(){
@@ -46,11 +55,32 @@ public class Asignatura {
 	 * @param titulo
 	 */
 	public void eliminarActividad(String titulo){
-
+            Actividad actividad = new Actividad();
+            boolean encontrada = false;
+            for(Actividad activ: actividades){
+                if(activ.getTitulo().equals(titulo)){
+                    encontrada = true;
+                    actividades.removeIf(a -> (a.getTitulo().equals(nombre)));
+                    System.out.println("La asignatura " + nombre + " ha sido eliminada");
+                }
+            }
+            if(!encontrada){
+                System.out.println("La asignatura " + nombre + " no fue encontrada");
+            }
 	}
 
 	public void mostrarActividades(){
-
+            System.out.println("\nActividades: \n");
+            for (Actividad activ: actividades){
+            System.out.println("Titulo: " + activ.getTitulo() +
+                               "\nFecha de Entrega: " + activ.getFechaDeEntrega().getTime() + 
+                               "\nDescripción: " + activ.getDescripcion() + 
+                               "\nAsignatura: " + activ.getAsignatura().getNombre() + 
+                               "\nEstado: " + activ.getEstadoDeEntrega() + 
+                               "\nCalificación: " + activ.getCalificacionObtenida() + "/" + activ.getCalificacionMaxima() +
+                               "\nTipo de actividad: " + activ.getTipoDeActividad() +
+                               "\n------------------");
+            }
 	}
 
     public String getDescripcion() {

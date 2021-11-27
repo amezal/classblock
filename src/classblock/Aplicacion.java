@@ -13,7 +13,7 @@ public class Aplicacion {
     private String autores;
     private Calendar fecha;
     private float version;
-    private Calendario calendario;
+    private Calendario calendario = new Calendario();
     private ArrayList<Usuario> usuarios = new ArrayList<>();
     private Usuario usuario;
 
@@ -50,11 +50,11 @@ public class Aplicacion {
     }
 
     public void mostrarAsignaturas(){
-
+        usuario.mostrarAsignaturas();
     }
 
     public void mostrarCalendario(){
-
+        calendario.mostrarActividades(usuario);
     }
 
     public void registrarUsuario(Usuario usuario){

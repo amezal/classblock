@@ -11,31 +11,49 @@ import java.util.Calendar;
  */
 public class Calendario {
 
-	private Calendar fechaActual;
-	private ArrayList <Actividad> actividades = new ArrayList<>();
+    private Calendar fechaActual;
+    private ArrayList <Actividad> actividades = new ArrayList<>();
+    private String filtro = "Todas";
 
-	public Calendario(){
+    public Calendario(){
 
-	}
+    }
 
-	public void finalize() throws Throwable {
+    public void finalize() throws Throwable {
+        
+    }
+    /**
+     * 
+     * @param nombreAsignatura
+     */
+    public void filtrar(String nombreAsignatura){
+        filtro = nombreAsignatura;
+    }
 
-	}
-	/**
-	 * 
-	 * @param nombreAsignatura
-	 */
-	public void filtrar(String nombreAsignatura){
-
-	}
-
-	/**
-	 * 
-	 * @param usuario
-	 */
-	public void mostrarActividades(Usuario usuario){
-
-	}
+    /**
+     * 
+     * @param usuario
+     */
+    public void mostrarActividades(Usuario usuario){
+        
+        boolean encontrada = false;
+        
+        if(filtro.equals("Todas")){
+            for(Asignatura asig: usuario.getAsignaturas()){
+                asig.mostrarActividades();
+            }    
+        } else{
+            for(Asignatura asig: usuario.getAsignaturas()){
+                if(filtro.equals(asig.getNombre())){
+                    asig.mostrarActividades();
+                    encontrada = true;
+                }
+            }
+            if(!encontrada){
+                System.out.println("La asignatura no fue encontrada");
+            }
+        }   
+    }
 
     public Calendar getFechaActual() {
         return fechaActual;

@@ -29,7 +29,12 @@ public class Usuario {
      * @param descripcion
      */
     public void agregarAsignatura(String nombre, String docente, String linkAsig, String descripcion){
-
+        Asignatura nuevaAsignatura = new Asignatura();
+        nuevaAsignatura.setNombre(nombre);
+        nuevaAsignatura.setDescripcion(descripcion);
+        nuevaAsignatura.setDocente(docente);
+        nuevaAsignatura.setLinkAsig(linkAsig);
+        asignaturas.add(nuevaAsignatura);
     }
 
     /**
@@ -37,12 +42,30 @@ public class Usuario {
      * @param nombre
      */
     public void eliminarAsignatura(String nombre){
-
+        Asignatura asignatura = new Asignatura();
+        boolean encontrada = false;
+        for(Asignatura asig: asignaturas){
+            if(asig.getNombre().equals(nombre)){
+                encontrada = true;
+                asignaturas.removeIf(n -> (n.getNombre().equals(nombre)));
+                System.out.println("La asignatura " + nombre + " ha sido eliminada");
+            }
+        }
+        if(!encontrada){
+            System.out.println("La asignatura " + nombre + " no fue encontrada");
+        }
     }
 
     public void mostrarAsignaturas(){
-
+        System.out.println("Asignaturas: \n");
+        for (Asignatura asig: asignaturas){
+            System.out.println("Nombre: " + asig.getNombre() + 
+                               "\nDescripción: " + asig.getDescripcion() + 
+                               "\nDocente: " + asig.getDocente() + 
+                               "\nLink a la asignatura: " + asig.getLinkAsig() + "\n------------------");
+        }
     }
+    
 
     public boolean isAutenticado() {
         return autenticado;
